@@ -5,23 +5,23 @@ import { Card, CardContent, TextField, CardActions, Button, Grid } from '@materi
 
 import StepHeader from '../../StepHeader/StepHeader';
 
-class StepOne extends Component {
+class StepTwo extends Component {
     constructor() {
         super();
         this.state = {
             feeling: '',
-            nextPage: '/2',
+            nextPage: '/3',
         };
     }
 
     handleChange = (event) => {
         this.setState({
-            feeling: event.target.value,
+            understanding: event.target.value,
         });
     };
 
     nextPage = (event) => {
-        const action = { type: 'STEP', payload: { feeling: this.state.feeling } };
+        const action = { type: 'STEP', payload: { understanding: this.state.understanding } };
         this.props.dispatch(action);
         this.props.history.push(this.state.nextPage);
     }
@@ -40,10 +40,10 @@ class StepOne extends Component {
                         <Card className="card">
                             <CardContent>
                                 <p>
-                                    How are you feeling today?
+                                    How well are you understanding the content?
                                 </p>
                                 <TextField
-                                    id="feeling"
+                                    id="understanding"
                                     onChange={this.handleChange}
                                 />
                             </CardContent>
@@ -63,4 +63,4 @@ class StepOne extends Component {
     }
 }
 
-export default connect()(StepOne);
+export default connect()(StepTwo);

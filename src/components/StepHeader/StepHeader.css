@@ -1,0 +1,16 @@
+header {
+    padding: 25px;
+    margin-bottom: 50px;
+    background-color: #022A35;
+}
+
+h1 {
+    font-size: 44px;
+    color: #515E91;
+}
+
+.material-icons {
+    font-size: 36px;
+    padding: 0px 8px;
+    color: #00400E;
+}
