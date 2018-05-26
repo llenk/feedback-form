@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux'; // add 'compose' in if needed?
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 const feedbackReducer = (state = {}, action) => {
+    if (action.type === 'STEP') {
+        return {...state, ...action.payload};
+    }
     return state;
 };
 
