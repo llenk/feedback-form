@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// import { Card, CardContent, TextField, CardActions, Button, Grid } from '@material-ui/core';
-// import { withStyles } from '@material-ui/core/styles';
-
 import StepHeader from '../../components/StepHeader/StepHeader';
 import NumberForm from '../../components/NumberForm/NumberForm';
 
