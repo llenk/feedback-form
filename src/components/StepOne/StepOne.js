@@ -2,8 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Card, CardContent, TextField, CardActions, Button, Grid } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
-import StepHeader from '../../StepHeader/StepHeader';
+import StepHeader from '../StepHeader/StepHeader';
+
+const styles = {
+    button: {
+      backgroundColor: '#7B84AE',
+      borderColor: '#515E91',
+      '&:hover': {
+        backgroundColor: '#515E91',
+        borderColor: '#303C74',
+      },
+      position: 'relative',
+      left: 'calc(100% - 96px)',
+    },
+  };
 
 class StepOne extends Component {
     constructor() {
@@ -26,7 +40,7 @@ class StepOne extends Component {
         this.props.history.push(this.state.nextPage);
     }
 
-    render() {
+    render(props) {
         return (
             <div>
                 <StepHeader />
@@ -36,7 +50,7 @@ class StepOne extends Component {
                     display="flex">
                     <Grid item xs>
                     </Grid>
-                    <Grid item xs={6} margin="100px">
+                    <Grid item xs={8} sm={6} md={4} margin="100px">
                         <Card className="card">
                             <CardContent>
                                 <p>
@@ -49,7 +63,8 @@ class StepOne extends Component {
                             </CardContent>
                             <CardActions>
                                 <Button 
-                                    onClick={this.nextPage}>
+                                    onClick={this.nextPage}
+                                    className={this.props.classes.button}>
                                     NEXT
                                 </Button>
                             </CardActions>
@@ -63,4 +78,4 @@ class StepOne extends Component {
     }
 }
 
-export default connect()(StepOne);
+export default connect()(withStyles(styles)(StepOne));
