@@ -60,7 +60,7 @@ class StepFour extends Component {
                                 {this.state.questionText}
                             </p>
                             <TextField
-                                name="question"
+                                name="comments"
                                 onChange={this.handleChange}
                             />
                         </CardContent>
