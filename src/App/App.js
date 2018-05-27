@@ -9,7 +9,7 @@ import StepTwo from '../pages/StepTwo/StepTwo';
 import StepThree from '../pages/StepThree/StepThree';
 import StepFour from '../pages/StepFour/StepFour';
 import StepFive from '../pages/StepFive/StepFive';
-import Admin from '../Admin/Admin';
+import Admin from '../pages/Admin/Admin';
 
 class App extends Component {
   render() {
