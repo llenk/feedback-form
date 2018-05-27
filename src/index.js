@@ -11,6 +11,9 @@ const feedbackReducer = (state = {}, action) => {
     if (action.type === 'STEP') {
         return {...state, ...action.payload};
     }
+    else if (action.type === 'SUBMIT_FEEDBACK') {
+        return {};
+    }
     return state;
 };
 

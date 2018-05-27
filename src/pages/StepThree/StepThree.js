@@ -22,6 +22,7 @@ class StepOne extends Component {
                     question={this.state.question}  
                     questionText={this.state.questionText}
                     history={this.props.history}
+                    // is this the way to send in history?
                     nextPage={this.state.nextPage}
                 />
             </div>

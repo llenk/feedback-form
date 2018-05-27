@@ -24,7 +24,7 @@ class NumberForm extends Component {
             question: '',
         };
     }
-    
+
     handleChange = (event) => { // changes local state while user is still typing
         this.setState({
             [event.target.name]: event.target.value,
@@ -34,7 +34,6 @@ class NumberForm extends Component {
     nextPage = (event) => {
         const action = { type: 'STEP', payload: { [this.props.question]: this.state.question } };
         this.props.dispatch(action);
-        console.log(this.state);
         this.props.history.push(this.props.nextPage);
     } // on click of button, sends payload to redux, and sends to next page
 
