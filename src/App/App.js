@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // import axios from 'axios';
 import './App.css';
-import StepOne from '../StepOne/StepOne';
-import StepTwo from '../StepTwo/StepTwo';
-import StepThree from '../StepThree/StepThree';
-import StepFour from '../StepFour/StepFour';
-import StepFive from '../StepFive/StepFive';
+import StepOne from '../pages/StepOne/StepOne';
+import StepTwo from '../pages/StepTwo/StepTwo';
+import StepThree from '../pages/StepThree/StepThree';
+import StepFour from '../pages/StepFour/StepFour';
+import StepFive from '../pages/StepFive/StepFive';
 import Admin from '../Admin/Admin';
 
 class App extends Component {

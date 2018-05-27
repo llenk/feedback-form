@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Card, CardContent, TextField, CardActions, Button, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import StepHeader from '../StepHeader/StepHeader';
+import StepHeader from '../../components/StepHeader/StepHeader';
 
 const styles = {
     button: {
@@ -16,7 +16,7 @@ const styles = {
       },
       position: 'relative',
       left: 'calc(100% - 96px)',
-    },
+    }, // styles for the button
   };
 
 class StepOne extends Component {
@@ -24,13 +24,13 @@ class StepOne extends Component {
         super();
         this.state = {
             feeling: '',
-            nextPage: '/2',
+            nextPage: '/2', 
         };
     }
 
-    handleChange = (event) => {
+    handleChange = (event) => { // changes local state while user is still typing
         this.setState({
-            feeling: event.target.value,
+            [event.target.name]: event.target.value,
         });
     };
 
@@ -38,7 +38,7 @@ class StepOne extends Component {
         const action = { type: 'STEP', payload: { feeling: this.state.feeling } };
         this.props.dispatch(action);
         this.props.history.push(this.state.nextPage);
-    }
+    } // on click of button, sends payload to redux, and sends to next page
 
     render(props) {
         return (
@@ -50,14 +50,16 @@ class StepOne extends Component {
                     display="flex">
                     <Grid item xs>
                     </Grid>
-                    <Grid item xs={8} sm={6} md={4} margin="100px">
+                    <Grid item xs={8} sm={6} md={4} margin="100px"> 
+                    {/* alters box size for screen sizes */}
                         <Card className="card">
                             <CardContent>
                                 <p>
                                     How are you feeling today?
                                 </p>
                                 <TextField
-                                    id="feeling"
+                                    name="feeling"
+                                    type="number"
                                     onChange={this.handleChange}
                                 />
                             </CardContent>

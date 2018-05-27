@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Card, CardContent, TextField, CardActions, Button, Grid } from '@material-ui/core';
 
-import StepHeader from '../StepHeader/StepHeader';
+import StepHeader from '../../components/StepHeader/StepHeader';
 
 class StepTwo extends Component {
     constructor() {
