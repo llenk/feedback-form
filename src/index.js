@@ -9,9 +9,12 @@ import logger from 'redux-logger';
 import axios from 'axios';
 
 const feedbackReducer = (state = {}, action) => {
+    // adds new piece of feedback to state
+    // this code works for all pieces of feedback (understanding, comments, etc)
     if (action.type === 'STEP') {
         return {...state, ...action.payload};
     }
+    // sends feedback to server, then clears state
     else if (action.type === 'SUBMIT_FEEDBACK') {
         axios({
             method: 'POST',
@@ -25,8 +28,8 @@ const feedbackReducer = (state = {}, action) => {
 };
 
 const storeInstance = createStore(
-    // This function is our first reducer
     // reducer is a function that runs every time an action is dispatched
+    // combineReducers isn't really needed here, but if I scale this up, it'll be there
     combineReducers({
         feedbackReducer,
     }),

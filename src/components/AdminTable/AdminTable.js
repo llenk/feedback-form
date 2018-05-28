@@ -47,6 +47,7 @@ class AdminTable extends Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
+                                {/* iterates over the pieces of feedback */}
                                 {this.state.feedback.map(fb => (
                                     <TableRow key={fb.id}>
                                         <TableCell>

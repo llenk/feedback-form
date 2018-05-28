@@ -3,6 +3,7 @@ var router = express.Router();
 var pool = require('../modules/pool');
 
 router.post('/', (req, res) => {
+    // inserts new feedback
     let queryText = `INSERT INTO "feedback"
         ("feeling", "understanding", "support", "comments")
         VALUES
@@ -16,7 +17,9 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    let queryText = `SELECT * FROM "feedback";`;
+    // gets feedback, ordered with newest feedback first
+    let queryText = `SELECT * FROM "feedback"
+        ORDER BY "id" DESC;`;
     pool.query(queryText)
         .then(response => res.send(response.rows))
         .catch(error => {
