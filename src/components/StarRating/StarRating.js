@@ -17,11 +17,11 @@ class StarRating extends Component {
     starClass = (id) => {
         if (id <= this.props.rating) {
             // applies 'selected' styles from above
-            return 'StarRating-selected-128';
+            return this.props.classes.selected;
         }
         else {
             // applies 'unselected' styles from above
-            return 'StarRating-unselected-129';
+            return this.props.classes.unselected;
         }
     }
     oneToFive = [1, 2, 3, 4, 5];
