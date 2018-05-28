@@ -25,7 +25,18 @@ router.get('/', (req, res) => {
         .catch(error => {
             console.log(error);
             res.sendStatus(500);
-        })
-})
+        });
+});
+
+// updates whether something is flagged or not
+router.put('/', (req, res) => {
+    let queryText = `UPDATE "feedback" SET "flagged"=$1 WHERE "id"=$2;`;
+    pool.query(queryText, [!req.body.flagged, req.body.id])
+        .then(response => res.sendStatus(200))
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = router;

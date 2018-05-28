@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { Grid, Paper, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { Grid, Paper, Table, TableHead, TableBody, TableRow, TableCell, Icon } from '@material-ui/core';
 
 class AdminTable extends Component {
     constructor() {
@@ -10,13 +10,27 @@ class AdminTable extends Component {
         this.state = {
             feedback: [],
         };
-        axios.get('/api/feedback')
-            .then(response => {
-                this.setState({
-                    feedback: response.data,
-                });
-            }).catch(error => console.log('whoops'));
+        this.getFeedback();
     }
+
+    getFeedback = () => {
+        axios.get('/api/feedback')
+        .then(response => {
+            this.setState({
+                feedback: response.data,
+            });
+        }).catch(error => console.log('whoops'));
+    }
+
+    handleFlagToggle = (fb) => (event) => {
+        axios({
+            method: 'PUT',
+            url: '/api/feedback',
+            data: fb,
+        }).then(response => {
+            this.getFeedback();
+        }).catch(error => console.log('whoops'));
+    };
 
     render(props) {
         return (
@@ -32,6 +46,9 @@ class AdminTable extends Component {
                         <Table>
                             <TableHead>
                                 <TableRow>
+                                    <TableCell>
+                                        Flag
+                                    </TableCell>
                                     <TableCell>
                                         Feeling
                                     </TableCell>
@@ -50,6 +67,17 @@ class AdminTable extends Component {
                                 {/* iterates over the pieces of feedback */}
                                 {this.state.feedback.map(fb => (
                                     <TableRow key={fb.id}>
+                                        <TableCell>
+                                            {fb.flagged ?
+                                            <Icon onClick={this.handleFlagToggle(fb)}>
+                                                flag
+                                            </Icon> 
+                                            :
+                                            <Icon onClick={this.handleFlagToggle(fb)}>
+                                                outlined_flag
+                                            </Icon> 
+                                            }
+                                        </TableCell>
                                         <TableCell>
                                             {fb.feeling}
                                         </TableCell>
