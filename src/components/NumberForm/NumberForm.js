@@ -27,9 +27,9 @@ class NumberForm extends Component {
         };
     }
 
-    handleStarClick = (event) => { // changes local state while user is still typing
+    handleStarClick = (num) => (event) => { 
         this.setState({
-            [event.target.name]: event.target.value,
+            question: num,
         });
     };
 

@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import { Icon } from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
-import './StarRating.css';
 
 // styles for star icons
 const styles = {
     selected: {
-        color: '#FFD5AA',
+        color: '#804B15',
     },
     unselected: {
-        color: '#804B15',
+        color: '#FFD5AA',
     }
 };
 
 class StarRating extends Component {
     starClass = (id) => {
-        if (id > this.props.rating) {
+        if (id <= this.props.rating) {
             // applies 'selected' styles from above
             return 'StarRating-selected-128';
         }
@@ -32,6 +31,7 @@ class StarRating extends Component {
                 {this.oneToFive.map(num => (<Icon 
                     key={num}
                     className={this.starClass(num)}
+                    onClick={this.props.handleStarClick(num)}
                     >
                     grade
                 </Icon>))}
