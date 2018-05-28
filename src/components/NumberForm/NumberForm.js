@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Card, CardContent, TextField, CardActions, Button, Grid } from '@material-ui/core';
+import StarRating from '../StarRating/StarRating';
+
+import { Card, CardContent, CardActions, Button, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -21,11 +23,11 @@ class NumberForm extends Component {
     constructor() {
         super();
         this.state = {
-            question: '',
+            question: 0,
         };
     }
 
-    handleChange = (event) => { // changes local state while user is still typing
+    handleStarClick = (event) => { // changes local state while user is still typing
         this.setState({
             [event.target.name]: event.target.value,
         });
@@ -52,10 +54,9 @@ class NumberForm extends Component {
                             <p>
                                 {this.props.questionText}
                             </p>
-                            <TextField
-                                name="question"
-                                type="number"
-                                onChange={this.handleChange}
+                            <StarRating 
+                                handleStarClick={this.handleStarClick}
+                                rating={this.state.question}
                             />
                         </CardContent>
                         <CardActions>
