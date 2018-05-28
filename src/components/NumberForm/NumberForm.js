@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Card, CardContent, TextField, CardActions, Button, Grid } from '@material-ui/core';
+import StarRating from '../StarRating/StarRating';
+
+import { Card, CardContent, CardActions, Button, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -21,55 +23,63 @@ class NumberForm extends Component {
     constructor() {
         super();
         this.state = {
-            question: '',
+            question: 0,
         };
     }
 
-    handleChange = (event) => { // changes local state while user is still typing
+    // changes state when a star is clicked
+    handleStarClick = (num) => (event) => {
         this.setState({
-            [event.target.name]: event.target.value,
+            question: num,
         });
     };
 
+    // if a valid response (1-5) is selected, goes to next page
+    // I tried to get a dialog box to show, but it wouldn't
+    // so now it just doesn't do anything when there's no valid response
     nextPage = (event) => {
-        const action = { type: 'STEP', payload: { [this.props.question]: this.state.question } };
-        this.props.dispatch(action);
-        this.props.history.push(this.props.nextPage);
-    } // on click of button, sends payload to redux, and sends to next page
+        if (this.state.question < 1 || this.state.question > 5) {
+            
+        }
+        else {
+            const action = { type: 'STEP', payload: { [this.props.question]: this.state.question } };
+            this.props.dispatch(action);
+            this.props.history.push(this.props.nextPage);
+        }
+    }
 
     render(props) {
         return (
-            <Grid container
-                alignItems="flex-end"
-                justify="center"
-                display="flex">
-                <Grid item xs>
-                </Grid>
-                <Grid item xs={8} sm={6} md={4} margin="100px">
-                    {/* alters box size for screen sizes */}
-                    <Card className="card">
-                        <CardContent>
-                            <p>
-                                {this.props.questionText}
-                            </p>
-                            <TextField
-                                name="question"
-                                type="number"
-                                onChange={this.handleChange}
-                            />
-                        </CardContent>
-                        <CardActions>
-                            <Button
-                                onClick={this.nextPage}
-                                className={this.props.classes.button}>
-                                NEXT
+                <Grid container
+                    alignItems="flex-end"
+                    justify="center"
+                    display="flex">
+                    <Grid item xs>
+                    </Grid>
+                    <Grid item xs={8} sm={6} md={4} margin="100px">
+                        {/* alters box size for screen sizes */}
+                        <Card className="card">
+                            <CardContent>
+                                <p>
+                                    {this.props.questionText}
+                                </p>
+                                <StarRating
+                                    handleStarClick={this.handleStarClick}
+                                    rating={this.state.question}
+                                />
+                            </CardContent>
+                            <CardActions>
+                                <Button
+                                    onClick={this.nextPage}
+                                    className={this.props.classes.button}>
+                                    NEXT
                         </Button>
-                        </CardActions>
-                    </Card>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                    <Grid item xs>
+                    </Grid>
                 </Grid>
-                <Grid item xs>
-                </Grid>
-            </Grid>
         )
     }
 }
