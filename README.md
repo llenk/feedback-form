@@ -30,7 +30,7 @@ npm run client
 ### Completed
 - Update this README.md to describe the project in your own words
 - Improve the styling of the app using Material-UI theme, cards, snackbars, buttons, nav bar, and icons, and anything else you'd like.
+- Add the ability to flag an existing feedback entry for further review on the /admin view
 
 ### Not (yet) completed
-- Add the ability to flag an existing feedback entry for further review on the /admin view
 - Deploy your project to Heroku -- you'll need to read the special instructions for building and deploying with these apps! 
